@@ -59,8 +59,12 @@ function App({ route, navigation }) {
     const [showLow, setShowLow] = useState(false);
     const [showMedium, setShowMedium] = useState(false);
     const [showHigh, setShowHigh] = useState(false);
+    const [showLongToday, setShowLongToday] = useState(false);
     const [fromattedDay, setFormattedDay] = useState('');
+    const [helbelzliinText, setHelbelzliinText] = useState('');
+    const [anhniiUtga, setAnhniiUtga] = useState(false);
     const utgaAwah = async () => {
+        setAnhniiUtga(true)
         try {
             const value1 = await AsyncStorage.getItem('ymIrehOdruud');
             setYmirdegOdruud(JSON.parse(value1));
@@ -127,15 +131,15 @@ function App({ route, navigation }) {
 
 
     const dayPress2 = day => {
-        
+
         var dayStamp = day.timestamp;
         var dayFormatted = moment(dayStamp).format("YYYY-MM-DD");
         var dayFormatted2 = moment(dayStamp).format("DD/MM/YYYY");
-        
+
         if (loww.indexOf(dayFormatted) >= 0) {
             setShowLow(true);
             setFormattedDay(dayFormatted2.toString());
-            
+
         } else if (mediumm.indexOf(dayFormatted) >= 0) {
             setShowMedium(true);
             setFormattedDay(dayFormatted2.toString());
@@ -145,7 +149,36 @@ function App({ route, navigation }) {
         };
     }
 
+    const onDayLongPress  =async day => {
+        var longDayStump = day.timestamp;
+        var longDayStumpFormatted = moment(longDayStump).format("YYYY-MM-DD");
+        var longDayStumpFormatted2 = moment(longDayStump).format("DD/MM/YYYY");
+        setShowLongToday(true);
+        if (ymIrdegOdruud.indexOf(longDayStumpFormatted) >= 0) {
+            for (let index = 0; index < ymIrdegOdruud.length; index++) {
+                if (ymIrdegOdruud[index] == longDayStumpFormatted) {
+                    ymIrdegOdruud.splice(index, 1);
+                    setHelbelzliinText('Сарын тэмдэг ирээгүй өдөр гэж тэмдэглэлээ.')
+                    try {
+                        //await AsyncStorage.removeItem('ymIrehOdruud');
+                        await AsyncStorage.setItem('ymIrehOdruud', JSON.stringify(ymIrdegOdruud));
+                    } catch (error) {
+            
+                    }
+                }
 
+            }
+        } else {
+            ymIrdegOdruud.push(longDayStumpFormatted);
+            setHelbelzliinText('Сарын тэмдэг ирсэн өдөр гэж тэмдэглэлээ.')
+            try {
+                //await AsyncStorage.removeItem('ymIrehOdruud');
+                await AsyncStorage.setItem('ymIrehOdruud', JSON.stringify(ymIrdegOdruud));
+            } catch (error) {
+    
+            }
+        }
+    }
 
 
 
@@ -154,74 +187,100 @@ function App({ route, navigation }) {
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../android/assets/back2.jpg')} resizeMode='cover' style={styles.image}>
+
                 <Modal
                     visible={showLow}
                     transparent
                     onRequestClose={() => setShowLow(false)}
-                    animationType= 'slide'
+                    animationType='slide'
                 >
                     <View style={styles.centered_view}>
                         <View style={styles.modal}>
                             <View style={styles.dayTitle}>
                                 <Text style={styles.textModalTitle}>{fromattedDay}</Text>
                             </View>
-                            <View style={{height:200, justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{ height: 200, justifyContent: 'center', alignItems: 'center' }}>
 
                                 <Text style={styles.textModal}>Жирэмсэн болох магадлал маш бага.</Text>
                             </View>
-                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20}} onPress={() => setShowLow(false) }>
+                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} onPress={() => setShowLow(false)}>
                                 <Text style={styles.textModalButton}>За</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
 
                 </Modal>
-
 
                 <Modal
                     visible={showMedium}
                     transparent
                     onRequestClose={() => setShowMedium(false)}
-                    animationType= 'slide'
+                    animationType='slide'
                 >
                     <View style={styles.centered_view}>
                         <View style={styles.modal}>
                             <View style={styles.dayTitle}>
                                 <Text style={styles.textModalTitle}>{fromattedDay}</Text>
                             </View>
-                            <View style={{height:200, justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{ height: 200, justifyContent: 'center', alignItems: 'center' }}>
 
                                 <Text style={styles.textModal}>Жирэмсэн болох магадлал дунд зэрэг.</Text>
                             </View>
-                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20}} onPress={() => setShowMedium(false) }>
+                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} onPress={() => setShowMedium(false)}>
                                 <Text style={styles.textModalButton}>За</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
 
                 </Modal>
+
                 <Modal
                     visible={showHigh}
                     transparent
                     onRequestClose={() => setShowHigh(false)}
-                    animationType= 'slide'
+                    animationType='slide'
                 >
                     <View style={styles.centered_view}>
                         <View style={styles.modal}>
                             <View style={styles.dayTitle}>
                                 <Text style={styles.textModalTitle}>{fromattedDay}</Text>
                             </View>
-                            <View style={{height:200, justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{ height: 200, justifyContent: 'center', alignItems: 'center' }}>
 
                                 <Text style={styles.textModal}>Жирэмсэн болох магадлал маш өндөр.</Text>
                             </View>
-                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20}} onPress={() => setShowHigh(false) }>
+                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} onPress={() => setShowHigh(false)}>
                                 <Text style={styles.textModalButton}>За</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
 
                 </Modal>
+
+                <Modal
+                    visible={showLongToday}
+                    transparent
+                    onRequestClose={() => setShowLongToday(false)}
+                    animationType='slide'
+
+                >
+                    <View style={styles.centered_view}>
+                        <View style={styles.modal}>
+                            <View style={styles.dayTitle}>
+                                <Text style={styles.textModalTitle2}>Сарын тэмдгийн хэлбэлзэл</Text>
+                            </View>
+                            <View style={{ height: 200, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={styles.textModal2}>{helbelzliinText}</Text>
+                                {/* <Text style={styles.textModal2}>Хэрэв таны сарын тэмдэгт хэлбэлзэл орсон бол хуанли дээрээ тэмдэглэл хийгээрэй.</Text> */}
+                            </View>
+                            <TouchableOpacity style={{ backgroundColor: '#8D00CC', height: 51, justifyContent: 'center', alignItems: 'center', borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }} onPress={() => setShowLongToday(false)}>
+                                <Text style={styles.textModalButton}>За</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                </Modal>
+
                 <View style={styles.container1}>
                     <View style={styles.container3}>
                         <Text style={styles.textTitle}>Бүсгүйн хуанли</Text>
@@ -230,6 +289,7 @@ function App({ route, navigation }) {
                         </TouchableOpacity>
                     </View>
                     <Calendar
+                        onDayLongPress={onDayLongPress}
                         onDayPress={dayPress2
                         }
                         enableSwipeMonths={true}
@@ -391,7 +451,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lobster-Regular',
         fontSize: 15,
         textAlign: 'center',
-        
+
     },
     textModalTitle: {
         justifyContent: 'center',
@@ -403,7 +463,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     textModalButton: {
-        
+
         justifyContent: 'center',
         color: '#ffffff',
         //fontWeight: 'bold',
@@ -412,7 +472,47 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textAlign: 'center',
         paddingVertical: 5,
-        
+
+    },
+    dayTitle2: {
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#D99E32',
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
+    },
+    textModal2: {
+        justifyContent: 'center',
+        color: '#ffffff',
+        //fontWeight: 'bold',
+        //fontSize: 20,
+        fontFamily: 'Lobster-Regular',
+        fontSize: 16,
+        textAlign: 'center',
+
+    },
+    textModalTitle2: {
+        justifyContent: 'center',
+        color: '#ffffff',
+        //fontWeight: 'bold',
+        //fontSize: 20,
+        fontFamily: 'Lobster-Regular',
+        fontSize: 17,
+        textAlign: 'center',
+        padding: 5
+    },
+    textModalButton2: {
+
+        justifyContent: 'center',
+        color: '#ffffff',
+        //fontWeight: 'bold',
+        //fontSize: 20,
+        fontFamily: 'Lobster-Regular',
+        fontSize: 15,
+        textAlign: 'center',
+        paddingVertical: 5,
+
     }
 })
 
