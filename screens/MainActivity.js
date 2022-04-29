@@ -317,7 +317,7 @@ function App({ route, navigation }) {
                             textMonthFontFamily: 'Lobster-Regular',
                             textDayFontFamily: 'Lobster-Regular',
                             textDayHeaderFontFamily: 'Lobster-Regular',
-                            todayTextColor: '#BFB639',
+                            todayTextColor: '#0F88F2',
                         }}
                         firstDay={1}
                         markingType='period'
