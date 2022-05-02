@@ -71,11 +71,11 @@ function App() {
           component={AdviceOgoh}
           options={({ navigation }) => ({
             headerLeft: () => (<TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()}>
-              <Image style={{ width: 25, height: 25, marginLeft: 10, tintColor: '#076DF2' }} source={require('./android/assets/back.png')} />
+              <Image style={{ width: 25, height: 25, marginLeft: 10, tintColor: '#076DF2' }} source={require('./assets/back.png')} />
             </TouchableOpacity>
             ),
             headerRight: () => (<TouchableOpacity activeOpacity={0.8} onPress={() => showAlert()}>
-              <Image style={{ width: 25, height: 25, marginRight: 10, tintColor: '#076DF2' }} source={require('./android/assets/question.png')} />
+              <Image style={{ width: 25, height: 25, marginRight: 10, tintColor: '#076DF2' }} source={require('./assets/question.png')} />
             </TouchableOpacity>
             ),
             headerTitle: 'Бүсгүйн зөвөлгөө',
@@ -87,7 +87,7 @@ function App() {
           component={Settings}
           options={({ navigation }) => ({
             headerLeft: () => (<TouchableOpacity activeOpacity={0.8} onPress={() => navigation.goBack()}>
-              <Image style={{ width: 25, height: 25, marginLeft: 10, tintColor: '#076DF2' }} source={require('./android/assets/back.png')} />
+              <Image style={{ width: 25, height: 25, marginLeft: 10, tintColor: '#076DF2' }} source={require('./assets/back.png')} />
             </TouchableOpacity>
             ),
             headerTitle: 'Бүсгүйн хуанли',

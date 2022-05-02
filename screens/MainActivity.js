@@ -63,6 +63,7 @@ function App({ route, navigation }) {
     const [fromattedDay, setFormattedDay] = useState('');
     const [helbelzliinText, setHelbelzliinText] = useState('');
     const [anhniiUtga, setAnhniiUtga] = useState(false);
+    const [longDay, setLongDay] = useState('');
     const utgaAwah = async () => {
         setAnhniiUtga(true)
         try {
@@ -152,6 +153,7 @@ function App({ route, navigation }) {
     const onDayLongPress  =async day => {
         var longDayStump = day.timestamp;
         var longDayStumpFormatted = moment(longDayStump).format("YYYY-MM-DD");
+        setLongDay(longDayStumpFormatted);
         var longDayStumpFormatted2 = moment(longDayStump).format("DD/MM/YYYY");
         setShowLongToday(true);
         if (ymIrdegOdruud.indexOf(longDayStumpFormatted) >= 0) {
@@ -180,13 +182,15 @@ function App({ route, navigation }) {
         }
     }
 
+    const onTiim = async => {
 
+    }
 
 
 
     return (
         <View style={styles.container}>
-            <ImageBackground source={require('../android/assets/back2.jpg')} resizeMode='cover' style={styles.image}>
+            <ImageBackground source={require('../assets/back2.jpg')} resizeMode='cover' style={styles.image}>
 
                 <Modal
                     visible={showLow}
@@ -285,7 +289,7 @@ function App({ route, navigation }) {
                     <View style={styles.container3}>
                         <Text style={styles.textTitle}>Бүсгүйн хуанли</Text>
                         <TouchableOpacity style={{}} onPress={() => navigation.navigate('Settings')}>
-                            <Image style={{ width: 25, height: 25, marginLeft: 60, marginTop: 15, tintColor: '#fff', }} source={require('../android/assets/setting.png')} />
+                            <Image style={{ width: 25, height: 25, marginLeft: 60, marginTop: 15, tintColor: '#fff', }} source={require('../assets/setting.png')} />
                         </TouchableOpacity>
                     </View>
                     <Calendar
@@ -330,11 +334,11 @@ function App({ route, navigation }) {
                         <Text style={styles.text}>Зөвөлгөөнүүд</Text>
                         <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 80, backgroundColor: '#8D00CC', marginTop: 7 }} />
                         <View style={{ marginHorizontal: 5, marginTop: 18, backgroundColor: '#ffffff', width: 10, height: 2 }} />
-                        <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../android/assets/baby.png')} />
+                        <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../assets/baby.png')} />
 
                         <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 30, backgroundColor: '#D99E32', marginTop: 7 }} />
                         <View style={{ marginHorizontal: 5, marginTop: 18, backgroundColor: '#ffffff', width: 10, height: 2 }} />
-                        <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../android/assets/heregleltei.png')} />
+                        <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../assets/heregleltei.png')} />
                     </View>
                     <FlatList
 

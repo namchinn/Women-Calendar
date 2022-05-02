@@ -26,19 +26,19 @@ function App({ route, navigation }) {
             pages={[
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../android/assets/menstruation.png')} />,
+                    image: <Image style={styles.image} source={require('../assets/menstruation.png')} />,
                     title: 'Бүсгүйн хуанли',
                     subtitle: 'Хуанли байнга хөтөлснөөр та бие сэтгэл болон ариун цэврийн хувьд зөв дадал хэвшилтэй болно.',
                 },
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../android/assets/baby.png')} />,
+                    image: <Image style={styles.image} source={require('../assets/baby.png')} />,
                     title: 'Төлөвлөлт ба хамгаалалт',
                     subtitle: 'Та хүүхэдтэй болохоор төлөвлөж байгаа эсвэл хүсээгүй жирэмслэлтээс сэргийлж байгаа бол хуанлиг ашиглан "хэзээ" гэдгээ мэдэж аваарай.',
                 },
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../android/assets/doctors.jpg')} />,
+                    image: <Image style={styles.image} source={require('../assets/doctors.jpg')} />,
                     title: 'Эрүүл мэнд',
                     subtitle: 'Бүсгүйн зөвлөгөө хэсгээс та өөр хэрэгтэй эрүүл мэндийн зөвлөгөөнүүдээ аваарай.',
                 },

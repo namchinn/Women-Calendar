@@ -25,7 +25,7 @@ function App({ route }) {
     return (
         <ScrollView>
             <View style={{elevation:4}}>
-                <Image style={{  borderRadius: 5, height: 350, width: windowWidth, marginTop: -25 }} source={require('../android/assets/doctors.jpg')} />
+                <Image style={{  borderRadius: 5, height: 350, width: windowWidth, marginTop: -25 }} source={require('../assets/doctors.jpg')} />
             </View>
             <View style={styles.container2}>
                 <Image style={{ width: 26, height: 26, borderRadius: 10, marginLeft: 5 , marginTop: 4,}} source={data.image} />

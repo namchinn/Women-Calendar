@@ -258,7 +258,7 @@ function App({ route, navigation }) {
             <View style={{ marginTop: 10, marginHorizontal: 10 }}>
                 <Image
                     style={{ width: 390, height: 300, marginRight: 10 }}
-                    source={require('../android/assets/womenLearning.jpg')}
+                    source={require('../assets/womenLearning.jpg')}
                 />
             </View>
             <View style={styles.container2}>
@@ -271,7 +271,7 @@ function App({ route, navigation }) {
                         onChangeText={(value) => setUrgeljlehHugatsaa(value)}
                     />
                     <TouchableOpacity style={{ marginBottom: 0 }} onPress={alert1}>
-                        <Image style={{ width: 30, height: 30, marginTop: -10, tintColor: '#ffffff' }} source={require('../android/assets/question.png')} />
+                        <Image style={{ width: 30, height: 30, marginTop: -10, tintColor: '#ffffff' }} source={require('../assets/question.png')} />
                     </TouchableOpacity>
                 </View>
 
@@ -284,7 +284,7 @@ function App({ route, navigation }) {
                         onChangeText={(value) => setMochlogiinUrt(value)}
                     />
                     <TouchableOpacity style={{ marginBottom: 0 }} onPress={alert2}>
-                        <Image style={{ width: 30, height: 30, marginTop: -10, tintColor: '#ffffff' }} source={require('../android/assets/question.png')} />
+                        <Image style={{ width: 30, height: 30, marginTop: -10, tintColor: '#ffffff' }} source={require('../assets/question.png')} />
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.text}>   3. Таны хамгийн сүүлийн сарын тэмдэг хэдний өдөр эхэлж ирсэн бэ?</Text>
@@ -305,7 +305,7 @@ function App({ route, navigation }) {
                     <TouchableOpacity onPress={() => showMode('date')}>
                         <Image
                             style={{ width: 30, height: 30, marginLeft: 10 }}
-                            source={require('../android/assets/calendartai.png')}
+                            source={require('../assets/calendartai.png')}
                         />
                     </TouchableOpacity>
                 </View>
@@ -314,7 +314,7 @@ function App({ route, navigation }) {
                 <TouchableOpacity onPress={odorNemeh}>
                     <Image
                         style={{ width: 30, height: 30, marginLeft: 10, tintColor: '#076DF2' }}
-                        source={require('../android/assets/right.png')}
+                        source={require('../assets/right.png')}
                     />
                 </TouchableOpacity>
             </View>

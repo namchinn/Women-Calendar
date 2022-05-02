@@ -25,7 +25,7 @@ function App({ navigation }) {
         <View style={styles.container1}>
 
             <View style={styles.container2}>
-                <Image style={{ width: 275, height: 275 }} source={require('../android/assets/tsagtai.png')} />
+                <Image style={{ width: 275, height: 275 }} source={require('../assets/tsagtai.png')} />
                 <Text style={styles.text}>Таны сарын тэмдэг хэд хоног үргэлжилдэг вэ?(4-7 хоног)</Text>
                 <TextInput
                     style={styles.input}
