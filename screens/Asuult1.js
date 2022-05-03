@@ -111,6 +111,16 @@ function App({ route, navigation }) {
         } catch (error) {
 
         }
+        try {
+            await AsyncStorage.setItem('odorStump', JSON.stringify(unixTimestampp));
+        } catch (error) {
+
+        }
+        try {
+            await AsyncStorage.setItem('mochlog', JSON.stringify(mochlogiinUrt));
+        } catch (error) {
+
+        }
         
         
         let timeSttt = unixTimestampp;

@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
     StyleSheet,
     View,
@@ -16,6 +17,7 @@ import {
     Image,
     Alert,
     Modal,
+
 } from 'react-native';
 import zovolgoonuud from './advice';
 
@@ -63,12 +65,15 @@ function App({ route, navigation }) {
     const [fromattedDay, setFormattedDay] = useState('');
     const [helbelzliinText, setHelbelzliinText] = useState('');
     const [anhniiUtga, setAnhniiUtga] = useState(false);
-    const [longDay, setLongDay] = useState('');
+    const [todayZoruu, setTodayZoruu] = useState(0);
+    const [anhniiOdor, setAnhniiOdor] = useState(0);
+    const [urgeljHugatsaa, setUrgeljHugatsaa] = useState(0);
     const utgaAwah = async () => {
         setAnhniiUtga(true)
         try {
             const value1 = await AsyncStorage.getItem('ymIrehOdruud');
             setYmirdegOdruud(JSON.parse(value1));
+
         } catch (error) {
 
         }
@@ -97,9 +102,53 @@ function App({ route, navigation }) {
         } catch (error) {
 
         }
+        try {
+            const value6 = await AsyncStorage.getItem('mochlog');
+            setUrgeljHugatsaa(JSON.parse(value6));
+        } catch (error) {
+
+        }
     }
+    const todayAwah = async () => {
+        try {
+            const value6 = await AsyncStorage.getItem('odorStump');
+            setAnhniiOdor(JSON.parse(value6));
+            var date = new Date();
+            console.log(date)
+            var dateStump = moment(date, 'YYYY-MM-DD').unix();
+            console.log(dateStump)
+            var dateStumpp = dateStump * 1000;
+            var zoruuOdor = dateStumpp - value6
+            var zoruuOdorToogoor = zoruuOdor / 86400000
+            var zoruuOdorBuhel = Math.floor(zoruuOdorToogoor);
+            console.log(zoruuOdorBuhel);
+
+            console.log('zoruu:', todayZoruu);
+            var a = true;
+            var i = 0;
+            var e = urgeljHugatsaa;
+            console.log('e:', e);
+            while (a) {
+                if (zoruuOdorBuhel >= urgeljHugatsaa && i < 40) {
+                    zoruuOdorBuhel = zoruuOdorBuhel - urgeljHugatsaa;
+                    i++;
+                    console.log(zoruuOdorBuhel);
+                } else {
+                    a = false;
+                }
+            }
+            setTodayZoruu(urgeljHugatsaa - zoruuOdorBuhel);
+        } catch (error) {
+
+        }
+    }
+
+
+
     useEffect(() => {
         utgaAwah();
+        todayAwah();
+        //HedenOdorUldsengTootsoh();
     }, []);
 
 
@@ -150,34 +199,33 @@ function App({ route, navigation }) {
         };
     }
 
-    const onDayLongPress  =async day => {
+    const onDayLongPress = async day => {
         var longDayStump = day.timestamp;
         var longDayStumpFormatted = moment(longDayStump).format("YYYY-MM-DD");
-        setLongDay(longDayStumpFormatted);
         var longDayStumpFormatted2 = moment(longDayStump).format("DD/MM/YYYY");
         setShowLongToday(true);
         if (ymIrdegOdruud.indexOf(longDayStumpFormatted) >= 0) {
             for (let index = 0; index < ymIrdegOdruud.length; index++) {
                 if (ymIrdegOdruud[index] == longDayStumpFormatted) {
                     ymIrdegOdruud.splice(index, 1);
-                    setHelbelzliinText('Сарын тэмдэг ирээгүй өдөр гэж тэмдэглэлээ.')
+                    setHelbelzliinText('Сарын тэмдэг ирээгүй гэж тэмдэглэлээ.')
                     try {
                         //await AsyncStorage.removeItem('ymIrehOdruud');
                         await AsyncStorage.setItem('ymIrehOdruud', JSON.stringify(ymIrdegOdruud));
                     } catch (error) {
-            
+
                     }
                 }
 
             }
         } else {
             ymIrdegOdruud.push(longDayStumpFormatted);
-            setHelbelzliinText('Сарын тэмдэг ирсэн өдөр гэж тэмдэглэлээ.')
+            setHelbelzliinText('Сарын тэмдэг ирсэн гэж тэмдэглэлээ.')
             try {
                 //await AsyncStorage.removeItem('ymIrehOdruud');
                 await AsyncStorage.setItem('ymIrehOdruud', JSON.stringify(ymIrdegOdruud));
             } catch (error) {
-    
+
             }
         }
     }
@@ -185,6 +233,7 @@ function App({ route, navigation }) {
     const onTiim = async => {
 
     }
+
 
 
 
@@ -287,6 +336,7 @@ function App({ route, navigation }) {
 
                 <View style={styles.container1}>
                     <View style={styles.container3}>
+                        <Text style={styles.textTitle1}>{todayZoruu}</Text>
                         <Text style={styles.textTitle}>Бүсгүйн хуанли</Text>
                         <TouchableOpacity style={{}} onPress={() => navigation.navigate('Settings')}>
                             <Image style={{ width: 25, height: 25, marginLeft: 60, marginTop: 15, tintColor: '#fff', }} source={require('../assets/setting.png')} />
@@ -321,12 +371,11 @@ function App({ route, navigation }) {
                             textMonthFontFamily: 'Lobster-Regular',
                             textDayFontFamily: 'Lobster-Regular',
                             textDayHeaderFontFamily: 'Lobster-Regular',
-                            todayTextColor: '#0F88F2',
+                            todayTextColor: '#0FF2B2',
                         }}
                         firstDay={1}
                         markingType='period'
                         markedDates={markk}
-
                     />
                 </View>
                 <View style={styles.container2}>
@@ -405,11 +454,23 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         margin: 15,
-        marginLeft: 110,
+        marginLeft: 80,
         justifyContent: 'center',
         color: '#ffffff',
         //fontWeight: 'bold',
         marginTop: 10,
+        //fontSize: 20,
+        fontFamily: 'Lobster-Regular',
+        fontSize: 20,
+
+    },
+    textTitle1: {
+        margin: 0,
+        justifyContent: 'center',
+        color: '#ffffff',
+        //fontWeight: 'bold',
+        marginTop: 10,
+        //paddingTop: 10,
         //fontSize: 20,
         fontFamily: 'Lobster-Regular',
         fontSize: 20,
