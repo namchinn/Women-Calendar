@@ -21,11 +21,6 @@ import {
 } from 'react-native';
 import zovolgoonuud from './advice';
 
-
-
-
-
-
 LocaleConfig.locales['fr'] = {
     monthNames: [
         '1 / ',
@@ -65,9 +60,9 @@ function App({ route, navigation }) {
     const [fromattedDay, setFormattedDay] = useState('');
     const [helbelzliinText, setHelbelzliinText] = useState('');
     const [anhniiUtga, setAnhniiUtga] = useState(false);
-    const [todayZoruu, setTodayZoruu] = useState(0);
+    const [todayZoruu, setTodayZoruu] = useState();
     const [anhniiOdor, setAnhniiOdor] = useState(0);
-    const [urgeljHugatsaa, setUrgeljHugatsaa] = useState(0);
+    const [urgeljHugatsaa, setUrgeljHugatsaa] = useState();
     const utgaAwah = async () => {
         setAnhniiUtga(true)
         try {
@@ -105,6 +100,7 @@ function App({ route, navigation }) {
         try {
             const value6 = await AsyncStorage.getItem('mochlog');
             setUrgeljHugatsaa(JSON.parse(value6));
+            console.log(value6)
         } catch (error) {
 
         }
@@ -112,32 +108,34 @@ function App({ route, navigation }) {
     const todayAwah = async () => {
         try {
             const value6 = await AsyncStorage.getItem('odorStump');
-            setAnhniiOdor(JSON.parse(value6));
+            const value7 = await AsyncStorage.getItem('mochlog');
+            var bb = JSON.parse(value6)
+            setAnhniiOdor(bb);
             var date = new Date();
-            console.log(date)
             var dateStump = moment(date, 'YYYY-MM-DD').unix();
-            console.log(dateStump)
             var dateStumpp = dateStump * 1000;
-            var zoruuOdor = dateStumpp - value6
+            var zoruuOdor = dateStumpp - bb
             var zoruuOdorToogoor = zoruuOdor / 86400000
             var zoruuOdorBuhel = Math.floor(zoruuOdorToogoor);
             console.log(zoruuOdorBuhel);
 
-            console.log('zoruu:', todayZoruu);
+            console.log('zoruu:', zoruuOdorBuhel);
             var a = true;
             var i = 0;
-            var e = urgeljHugatsaa;
+            var e = value7;
             console.log('e:', e);
             while (a) {
-                if (zoruuOdorBuhel >= urgeljHugatsaa && i < 40) {
-                    zoruuOdorBuhel = zoruuOdorBuhel - urgeljHugatsaa;
+                if (zoruuOdorBuhel >= e && i < 40) {
+                    zoruuOdorBuhel = zoruuOdorBuhel - e;
                     i++;
                     console.log(zoruuOdorBuhel);
                 } else {
                     a = false;
                 }
             }
-            setTodayZoruu(urgeljHugatsaa - zoruuOdorBuhel);
+            var aa = e - zoruuOdorBuhel
+            console.log('aa:', aa)
+            setTodayZoruu(aa);
         } catch (error) {
 
         }
@@ -148,6 +146,7 @@ function App({ route, navigation }) {
     useEffect(() => {
         utgaAwah();
         todayAwah();
+        //todayAwah();
         //HedenOdorUldsengTootsoh();
     }, []);
 
@@ -336,10 +335,12 @@ function App({ route, navigation }) {
 
                 <View style={styles.container1}>
                     <View style={styles.container3}>
-                        <Text style={styles.textTitle1}>{todayZoruu}</Text>
+                        <TouchableOpacity style={{}} onPress={() => navigation.navigate('onBoardin2')}>
+                            <Image style={{ width: 27, height: 27, marginTop: 15, tintColor: '#fff', }} source={require('../assets/manual.png')} />
+                        </TouchableOpacity>
                         <Text style={styles.textTitle}>Бүсгүйн хуанли</Text>
                         <TouchableOpacity style={{}} onPress={() => navigation.navigate('Settings')}>
-                            <Image style={{ width: 25, height: 25, marginLeft: 60, marginTop: 15, tintColor: '#fff', }} source={require('../assets/setting.png')} />
+                            <Image style={{ width: 27, height: 27, marginLeft: 60, marginTop: 15, tintColor: '#fff', }} source={require('../assets/setting.png')} />
                         </TouchableOpacity>
                     </View>
                     <Calendar
@@ -384,8 +385,12 @@ function App({ route, navigation }) {
                         <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 80, backgroundColor: '#8D00CC', marginTop: 7 }} />
                         <View style={{ marginHorizontal: 5, marginTop: 18, backgroundColor: '#ffffff', width: 10, height: 2 }} />
                         <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../assets/baby.png')} />
-
-                        <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 30, backgroundColor: '#D99E32', marginTop: 7 }} />
+                        {/* <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 30, backgroundColor: '#D99E32', marginTop: 7 }} /> */}
+                        <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: '#d99e32', marginLeft: 30, marginTop: 7 }}>
+                            <Text style={styles.textTitle1}>{todayZoruu}</Text>
+                        </View>
+                        {/* <View style={{ width: 26, height: 26, borderRadius: 13, marginLeft: 30, backgroundColor: '#D99E32', marginTop: 7>
+                        </View> */}
                         <View style={{ marginHorizontal: 5, marginTop: 18, backgroundColor: '#ffffff', width: 10, height: 2 }} />
                         <Image style={{ width: 26, height: 26, borderRadius: 10, marginTop: 7 }} source={require('../assets/heregleltei.png')} />
                     </View>
@@ -469,11 +474,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: '#ffffff',
         //fontWeight: 'bold',
-        marginTop: 10,
+        //marginTop: 10,
         //paddingTop: 10,
         //fontSize: 20,
         fontFamily: 'Lobster-Regular',
         fontSize: 20,
+        textAlign: 'center'
 
     },
     textZovlogooTitle: {

@@ -7,6 +7,7 @@ import MainActivity from './screens/MainActivity';
 import AdviceOgoh from './screens/AdviceOgoh';
 import Settings from './screens/Settings';
 import OnBoardingScreen from './screens/OnBoardingScreen';
+import onBoardin2 from './screens/onBoardin2';
 
 import {
   StyleSheet, View, Text, TouchableOpacity, Image, Alert, LogBox
@@ -64,6 +65,11 @@ function App() {
         <Stack.Screen
           name='MainActivity'
           component={MainActivity}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='onBoardin2'
+          component={onBoardin2}
           options={{ headerShown: false }}
         />
         <Stack.Screen
