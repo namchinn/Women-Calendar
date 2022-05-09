@@ -26,21 +26,45 @@ function App({ route, navigation }) {
             pages={[
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../assets/screenshot.jpg')} />,
+                    image: <Image style={styles.image} source={require('../assets/menstruation.png')} />,
                     title: 'Бүсгүйн хуанли',
-                    subtitle: 'Хуанли байнга хөтөлснөөр та бие сэтгэл болон ариун цэврийн хувьд зөв дадал хэвшилтэй болно.',
+                    subtitle: 'Бүсгүйн хуанли ашиглах гарын авлага.',
                 },
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../assets/baby.png')} />,
-                    title: 'Төлөвлөлт ба хамгаалалт',
-                    subtitle: 'Та хүүхэдтэй болохоор төлөвлөж байгаа эсвэл хүсээгүй жирэмслэлтээс сэргийлж байгаа бол хуанлиг ашиглан "хэзээ" гэдгээ мэдэж аваарай.',
+                    image: <Image style={styles.image} source={require('../assets/1.png')} />,
+                    title: 'Сарын тэмдэг ирэх өдрүүд',
+                    subtitle: '"Цэцэг дэлбээлэх" өдрүүдийг дээрх өнгөөр тэмдэглэв.',
                 },
                 {
                     backgroundColor: '#ffffff',
-                    image: <Image style={styles.image} source={require('../assets/doctors.jpg')} />,
-                    title: 'Эрүүл мэнд',
-                    subtitle: 'Бүсгүйн зөвлөгөө хэсгээс та өөр хэрэгтэй эрүүл мэндийн зөвлөгөөнүүдээ аваарай.',
+                    image: <Image style={styles.image} source={require('../assets/2.png')} />,
+                    title: 'Овуляцийн өдрүүд',
+                    subtitle: 'Дээрх тэмдэглэсэн өдрүүд нь жирэмсэн болох хамгийн өндөр магадлалтай үе буюу овуляцийн өдөр ба түүний өмнөх 3 өдөр юм.',
+                },
+                {
+                    backgroundColor: '#ffffff',
+                    image: <Image style={styles.image} source={require('../assets/3.png')} />,
+                    title: 'Өнөөдөр',
+                    subtitle: 'Гэрэлт өдөр.',
+                },
+                {
+                    backgroundColor: '#ffffff',
+                    image: <Image style={styles.image} source={require('../assets/4.png')} />,
+                    title: 'Дараагийн сарын тэмдэг',
+                    subtitle: 'Дараагийн сарын тэмдэг хэд хоногийн дараа эхлэхийг энэ хэсгээс харж болно.',
+                },
+                {
+                    backgroundColor: '#ffffff',
+                    image: <Image style={styles.image} source={require('../assets/5.png')} />,
+                    title: 'Ямар өдөр вэ?',
+                    subtitle: 'Хүссэн өдөр дээрээ дарж жирэмсэн болох магадлалаа хараарай.',
+                },
+                {
+                    backgroundColor: '#ffffff',
+                    image: <Image style={styles.image} source={require('../assets/6.png')} />,
+                    title: 'Сарын тэмдгийн хэлбэлзэл',
+                    subtitle: 'Сарын тэмдэгт тань хэлбэлзэл орсон бол засах өдрөө удаан дарж тухайн өдрийн тэмдэглэлийг өөрчлөөрэй.',
                 },
 
             ]}
