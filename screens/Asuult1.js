@@ -27,8 +27,8 @@ function App({ route, navigation }) {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
     const [jil, setJil] = useState('2022');
-    const [sar, setSar] = useState('02');
-    const [odor, setOdor] = useState('22');
+    const [sar, setSar] = useState('04');
+    const [odor, setOdor] = useState('06');
     const [unixTimestampp, setUnixTimestampp] = useState(1645530087000);
     const YmIrehodruudd = [];
     const jiremsenBolohOdruud = [];
@@ -179,38 +179,14 @@ function App({ route, navigation }) {
         } catch (error) {
             console.log(error)
         }
-        navigation.navigate('MainActivity', { id: YmIrehodruudd });
+        navigation.navigate('onBoardin2', { id: YmIrehodruudd });
     }
 
     const alert1 = day => {
         setModal1(true)
-        // Alert.alert(
-        //     "Сарын тэмдэг үргэлжлэх хугацаа:",
-        //     "     Сарын тэмдэг эхэлж ирсэн өдрөөс сүүлд ирсэн өдөр хүртэлх хугацаа юм. Хэвийн хугацаа 3-7 хоног байна.",
-        //     [
-        //         {
-        //             text: "За",
-        //             //onPress: () => Alert.alert("Cancel Pressed"),
-        //             style: "cancel",
-        //         },
-        //     ]
-        // );
-
     }
     const alert2 = day => {
         setModal2(true)
-        // Alert.alert(
-        //     "Сарын тэмдгийн мөчлөг гэж юу вэ?",
-        //     "     Сарын тэмдэг ирсэн эхний өдрөөс дараагийн сарын тэмдэг ирэх эхний өдөр хүртэлх хоногийг мөчлөг гэнэ. Хэвийн мөчлөг дунджаар 21-40 хоног байна.",
-        //     [
-        //         {
-        //             text: "За",
-        //             //onPress: () => Alert.alert("Cancel Pressed"),
-        //             style: "cancel",
-        //         },
-        //     ]
-        // );
-
     }
 
 

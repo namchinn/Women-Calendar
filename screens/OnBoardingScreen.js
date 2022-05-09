@@ -40,7 +40,7 @@ function App({ route, navigation }) {
                     backgroundColor: '#ffffff',
                     image: <Image style={styles.image} source={require('../assets/doctors.jpg')} />,
                     title: 'Эрүүл мэнд',
-                    subtitle: 'Бүсгүйн зөвлөгөө хэсгээс та өөр хэрэгтэй эрүүл мэндийн зөвлөгөөнүүдээ аваарай.',
+                    subtitle: 'Бүсгүйн зөвлөгөө хэсгээс та өөрт хэрэгтэй эрүүл мэндийн зөвлөгөөнүүдээ аваарай.',
                 },
 
             ]}

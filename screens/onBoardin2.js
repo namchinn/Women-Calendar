@@ -27,8 +27,8 @@ function App({ route, navigation }) {
                 {
                     backgroundColor: '#ffffff',
                     image: <Image style={styles.image} source={require('../assets/menstruation.png')} />,
-                    title: 'Бүсгүйн хуанли',
-                    subtitle: 'Бүсгүйн хуанли ашиглах гарын авлага.',
+                    title: 'Гарын авлага',
+                    subtitle: 'Бүсгүйн хуанли хөтлөх гарын авлага.',
                 },
                 {
                     backgroundColor: '#ffffff',
@@ -46,7 +46,7 @@ function App({ route, navigation }) {
                     backgroundColor: '#ffffff',
                     image: <Image style={styles.image} source={require('../assets/3.png')} />,
                     title: 'Өнөөдөр',
-                    subtitle: 'Гэрэлт өдөр.',
+                    subtitle: 'Гэрэлтэж буй өдөр нь өнөөдөр юм.',
                 },
                 {
                     backgroundColor: '#ffffff',
