@@ -100,7 +100,7 @@ function App({ route, navigation }) {
         try {
             const value6 = await AsyncStorage.getItem('mochlog');
             setUrgeljHugatsaa(JSON.parse(value6));
-            console.log(value6)
+            console.log('asyncaas awsan mochlogiin urt:', value6)
         } catch (error) {
 
         }
@@ -110,6 +110,9 @@ function App({ route, navigation }) {
             const value6 = await AsyncStorage.getItem('odorStump');
             const value7 = await AsyncStorage.getItem('mochlog');
             var bb = JSON.parse(value6)
+            console.log('asyncaas awsan mochlogiin urt2:', value7)
+            eee = JSON.parse(value7);
+            console.log('eee:', eee);
             setAnhniiOdor(bb);
             var date = new Date();
             var dateStump = moment(date, 'YYYY-MM-DD').unix();
@@ -117,23 +120,24 @@ function App({ route, navigation }) {
             var zoruuOdor = dateStumpp - bb
             var zoruuOdorToogoor = zoruuOdor / 86400000
             var zoruuOdorBuhel = Math.floor(zoruuOdorToogoor);
-            console.log(zoruuOdorBuhel);
 
             console.log('zoruu:', zoruuOdorBuhel);
-            var a = true;
+            var a = 1;
             var i = 0;
-            var e = value7;
+            var e = eee;
+            console.log(typeof(e));
             console.log('e:', e);
-            while (a) {
+            console.log('i:', i);
+            while (a < 2) {
                 if (zoruuOdorBuhel >= e && i < 40) {
                     zoruuOdorBuhel = zoruuOdorBuhel - e;
                     i++;
-                    console.log(zoruuOdorBuhel);
+                    console.log('while dotorh zoruuOdorBuhel:', zoruuOdorBuhel);
                 } else {
-                    a = false;
+                    a++;
                 }
             }
-            var aa = e - zoruuOdorBuhel
+            var aa = e - zoruuOdorBuhel;
             console.log('aa:', aa)
             setTodayZoruu(aa);
         } catch (error) {
